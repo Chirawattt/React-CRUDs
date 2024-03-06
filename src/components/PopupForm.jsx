@@ -1,6 +1,6 @@
 import PropsType from "prop-types";
 
-import axios from "axios";
+import axios from "axios"; // use axios for post request
 import { useState } from "react";
 
 export default function PopupForm({ isOpen, onClose, onSubmit}) {
@@ -12,7 +12,7 @@ export default function PopupForm({ isOpen, onClose, onSubmit}) {
     onSubmit({ author, title });
     onClose(); // Close the pop-up after submitting
     axios
-      .post("https://node41091-noderest.proen.app.ruk-com.cloud/books", {
+      .post("https://node56983-chirawat-noderest.proen.app.ruk-com.cloud/books", {
         author: author,
         title: title
       })

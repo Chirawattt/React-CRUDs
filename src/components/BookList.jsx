@@ -7,14 +7,14 @@ import axios from "axios";
 import PopupForm from "./PopupForm";
 
 export default function BookList() {
-  const [books, setBooks] = useState([]);
-  const [book, setBook] = useState({ id: "", title: "", author: "" });
+  const [books, setBooks] = useState([]); // initial state is an empty array
+  const [book, setBook] = useState({ id: "", title: "", author: "" }); // initial state is an empty string
 
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [formData, setFormData] = useState([]);
+  const [isPopupOpen, setIsPopupOpen] = useState(false); // handle popup form dafault is false
+  const [formData, setFormData] = useState([]); // array to store form data
 
-  const handleOpenPopup = () => setIsPopupOpen(true);
-  const handleClosePopup = () => setIsPopupOpen(false);
+  const handleOpenPopup = () => setIsPopupOpen(true); // open popup form
+  const handleClosePopup = () => setIsPopupOpen(false); // close popup form
 
   const handleFormSubmit = (data) => {
     if (data.id) {
@@ -28,9 +28,9 @@ export default function BookList() {
     handleClosePopup();
   };
 
-  useEffect(() => {
+  useEffect(() => { // when you open the page, it will fetch the data from the server
     axios
-      .get("https://node41091-noderest.proen.app.ruk-com.cloud/books")
+      .get("https://node56983-chirawat-noderest.proen.app.ruk-com.cloud/books")
       .then((response) => {
         setBooks(response.data);
       });
@@ -38,7 +38,7 @@ export default function BookList() {
 
   const viewBook = (id) => {
     axios
-      .get(`https://node41091-noderest.proen.app.ruk-com.cloud/books/${id}`)
+      .get(`https://node56983-chirawat-noderest.proen.app.ruk-com.cloud/books/${id}`)
       .then((response) => {
         setBook(response.data);
       });
@@ -49,7 +49,7 @@ export default function BookList() {
     console.log("upDFunc: ", book);
     console.log("upDFunc: ", editingData);
     // axios
-    //   .put(`https://node41091-noderest.proen.app.ruk-com.cloud/books/${id}`)
+    //   .put(`https://node56983-chirawat-noderest.proen.app.ruk-com.cloud/books/${id}`)
     //   .then((response) => {
     //     setBook(response.data);
     //   });
@@ -57,7 +57,7 @@ export default function BookList() {
 
   const deleteBook = (id) => {
     axios
-      .delete(`https://node41091-noderest.proen.app.ruk-com.cloud/books/${id}`)
+      .delete(`https://node56983-chirawat-noderest.proen.app.ruk-com.cloud/books/${id}`)
       .then(() => {
         setBooks(books.filter((book) => book.id !== id));
       });
